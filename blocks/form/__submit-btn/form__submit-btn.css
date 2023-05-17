@@ -5,6 +5,7 @@
   font-family: 'Inter';
   font-size: 18px;
   line-height: 22px;
+  text-align: center;
   color: #fff;
   transition-property: opacity;
   transition-duration: .2s;
@@ -14,3 +15,13 @@
 cursor: pointer;
 opacity: .8;
 }
+
+@media screen and (max-width: 918px) {
+  .form__submit-btn {
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
