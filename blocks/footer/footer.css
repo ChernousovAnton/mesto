@@ -1,0 +1,21 @@
+.footer {
+  width: var(--width-xl);
+  height: 18px;
+  margin: 66px auto 60px;
+  color: #545454;
+  outline: 1px solid red;
+}
+
+@media screen and (max-width: 918px) {
+  .footer {
+    width: calc(100vw - 2*var(--outer-side-margin-lg));
+  }
+}
+
+@media screen and (max-width: 618px) {
+  .footer {
+    height: 14px;
+    margin: 48px auto 36px;
+    width: calc(100vw - 2*var(--inner-side-margin-sm));
+  }
+}
