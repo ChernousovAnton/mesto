@@ -1,6 +1,6 @@
 .card__info {
-  position: relative;
-  margin-left: 21px;
-  width: 246px;
-  height: 23px;
+  margin: 0 21px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -13,89 +13,77 @@
     </header>
     <main class="main">
       <section class="profile">
-        <img class="profile__avatar" src="./images/avatar.png" alt="фотография Жак-Ив Кусто">
-        <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-btn"></button>
-          <p class="profile__text">Исследователь океана</p>
+        <div class="profile__card">
+          <img class="profile__avatar" src="./images/avatar.png" alt="фотография Жак-Ив Кусто">
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit-btn" type="button"></button>
+            <p class="profile__job">Исследователь океана</p>
+          </div>
         </div>
-        <button class="profile__add-btn"></button>
+        <button class="profile__add-btn" type="button"></button>
       </section>
       <section aria-label="фотографии мест">
         <ul class="elements">
-          <li>
-            <article class="card">
-              <img class="card__image" src="./images/karachaevsk.png" alt="Сентинский храм">
-              <div class="card__info">
-                <h2 class="card__title">Карачаевск</h2>
-                <button class="card__like"></button>
-              </div>
-            </article>
+          <li class="card">
+            <img class="card__image" src="./images/karachaevsk.png" alt="Сентинский храм">
+            <div class="card__info">
+              <h2 class="card__title">Карачаевск</h2>
+              <button class="card__like" type="button"></button>
+            </div>
           </li>
-          <li>
-            <article class="card">
-              <img class="card__image" src="./images/gora-elbrus.png" alt="вершина горы Эльбрус">
-              <div class="card__info">
-                <h2 class="card__title">Гора Эльбрус</h2>
-                <button class="card__like"></button>
-              </div>
-
-            </article>
+          <li class="card">
+            <img class="card__image" src="./images/gora-elbrus.png" alt="вершина горы Эльбрус">
+            <div class="card__info">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button class="card__like" type="button"></button>
+            </div>
           </li>
-          <li>
-            <article class="card">
-              <img class="card__image" src="./images/dombay.png" alt="гора Домбай">
-              <div class="card__info">
-                <h2 class="card__title">Домбай</h2>
-                <button class="card__like"></button>
-              </div>
-            </article>
+          <li class="card">
+            <img class="card__image" src="./images/dombay.png" alt="гора Домбай">
+            <div class="card__info">
+              <h2 class="card__title">Домбай</h2>
+              <button class="card__like" type="button"></button>
+            </div>
           </li>
-          <li>
-            <article class="card">
-              <img class="card__image" src="./images/gora-elbrus.png" alt="вершина горы Эльбрус">
-              <div class="card__info">
-                <h2 class="card__title">Гора Эльбрус</h2>
-                <button class="card__like"></button>
-              </div>
-            </article>
+          <li class="card">
+            <img class="card__image" src="./images/gora-elbrus.png" alt="вершина горы Эльбрус">
+            <div class="card__info">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button class="card__like" type="button"></button>
+            </div>
           </li>
-          <li>
-            <article class="card">
-              <img class="card__image" src="./images/dombay.png" alt="гора Домбай">
-              <div class="card__info">
-                <h2 class="card__title">Домбай</h2>
-                <button class="card__like"></button>
-              </div>
-            </article>
+          <li class="card">
+            <img class="card__image" src="./images/dombay.png" alt="гора Домбай">
+            <div class="card__info">
+              <h2 class="card__title">Домбай</h2>
+              <button class="card__like" type="button"></button>
+            </div>
           </li>
-          <li>
-            <article class="card">
-              <img class="card__image" src="./images/karachaevsk.png" alt="Сентинский храм">
-              <div class="card__info">
-                <h2 class="card__title">Карачаево-Черкеск</h2>
-                <button class="card__like"></button>
-              </div>
-            </article>
+          <li class="card">
+            <img class="card__image" src="./images/karachaevsk.png" alt="Сентинский храм">
+            <div class="card__info">
+              <h2 class="card__title">Карачаево-Черкеск</h2>
+              <button class="card__like" type="button"></button>
+            </div>
           </li>
         </ul>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__lable">&#169; 2020 Mesto Russia</p>
+      <p class="footer__label">&#169; 2020 Mesto Russia</p>
     </footer>
-  </div>
-  <div class="popup">
-    <div class="popup__container">
-      <h1 class="popup__title">Редактировать профиль</h1>
-      <form class="form">
-        <input class="form__item form__item_type_name" type="text" required>
-        <input class="form__item form__item_type_text" type="text" required>
-        <button class="form__submit-btn" type="submit">Сохранить</button>
-      </form>
-      <button class="popup__close-btn"></button>
+    <div class="popup">
+      <div class="popup__container">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="form" name="edit-profile">
+          <input class="form__item form__item_type_name" type="text" name="name" placeholder="Имя ..." required>
+          <input class="form__item form__item_type_job" type="text" name="job" placeholder="Профессия ..." required>
+          <button class="form__item form__item_type_submit" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-btn" type="button"></button>
+      </div>
     </div>
-
   </div>
   <script src="./scripts/index.js"></script>
 </body>

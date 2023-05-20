@@ -1,4 +1,5 @@
 .header {
+  box-sizing: border-box;
   margin: 45px auto 0;
   width: var(--width-xl);
   display: flex;
