@@ -5,8 +5,8 @@ let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__job');
 
 let formElement = document.querySelector('.form');
-let nameInput = formElement.querySelector('.form__item_type_name');
-let jobInput = formElement.querySelector('.form__item_type_job');
+let nameInput = formElement.querySelector('#profile-name');
+let jobInput = formElement.querySelector('#profile-job');
 
 function handleFormSubmit (evt) {
   evt.preventDefault();

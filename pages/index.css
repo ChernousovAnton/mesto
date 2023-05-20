@@ -52,3 +52,4 @@
 /* FORM */
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__item/form__item.css);
+@import url(../blocks/form/__submit/form__submit.css);
