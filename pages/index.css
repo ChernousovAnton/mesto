@@ -40,7 +40,7 @@
 
 /* FOOTER */
 @import url(../blocks/footer/footer.css);
-@import url(../blocks/footer/label/footer__label.css);
+@import url(../blocks/footer/__label/footer__label.css);
 
 /* POPUP */
 @import url(../blocks/popup/popup.css);
