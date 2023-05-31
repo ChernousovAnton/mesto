@@ -31,6 +31,35 @@
     <footer class="footer">
       <p class="footer__label">&#169; 2020 Mesto Russia</p>
     </footer>
+    <div class="popup popup_type_form" id="edit-profile-popup">
+      <div class="popup__container">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="form" name="edit-profile">
+          <input class="form__item" type="text" name="name" value="Жак-Ив Кусто" placeholder="Имя" required>
+          <input class="form__item" type="text" name="job" value="Исследователь океана" placeholder="Профессия" required>
+          <button class="form__submit" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-btn" type="button"></button>
+      </div>
+    </div>
+    <div class="popup popup_type_form" id="add-card-popup">
+      <div class="popup__container">
+        <h3 class="popup__title">Новое место</h3>
+        <form class="form" name="add-card">
+          <input class="form__item" type="text" name="name" placeholder="Название" required>
+          <input class="form__item" type="text" name="link" placeholder="Ссылка на картинку" required>
+          <button class="form__submit" type="submit">Создать</button>
+        </form>
+        <button class="popup__close-btn" type="button"></button>
+      </div>
+    </div>
+    <div class="popup popup_type_card" id="card-popup">
+      <figure class="popup__card-container">
+        <img class="popup__card-image">
+        <figcaption class="popup__figcaption"></figcaption>
+        <button class="popup__close-btn" type="button"></button>
+      </figure>
+    </div>
   </div>
   <template id="card-template">
     <li class="card">
@@ -41,19 +70,6 @@
       </div>
       <button class="card__trash"></button>
     </li>
-  </template>
-  <template id="popup-template">
-    <div class="popup">
-      <div class="popup__container">
-        <h3 class="popup__title"></h3>
-        <form class="form" name="edit-profile">
-          <input class="form__item" type="text" required>
-          <input class="form__item" type="text"required>
-          <button class="form__submit" type="submit"></button>
-        </form>
-        <button class="popup__close-btn" type="button"></button>
-      </div>
-    </div>
   </template>
   <script src="./scripts/index.js"></script>
 </body>
