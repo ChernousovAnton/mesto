@@ -69,7 +69,6 @@ function createCard(cardProperty) {
 
 initialCards.forEach(e => cardsEl.prepend(createCard(e)));
 
-
 editProfileBtn.addEventListener('click', openEditProfilePopup);
 addCardBtn.addEventListener('click', openAddCardPopup);
 closePopupBtns.forEach(closePopupBtn => closePopupBtn.addEventListener('click', evt => closePopup(evt)));
