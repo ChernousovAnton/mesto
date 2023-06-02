@@ -15,9 +15,8 @@ const formEditProfileEl = document.querySelector('form[name="edit-profile"]');
 const formAddCardEl = document.querySelector('form[name="add-card"]');
 const templateCard = document.querySelector('#card-template');
 
-
-const closePopup = (e) => e.classList.remove('popup_opened');
-const openPopup = (e) => e.classList.add('popup_opened');
+const closePopup = (popup) => popup.classList.remove('popup_opened');
+const openPopup = (popup) => popup.classList.add('popup_opened');
 
 function openEditProfilePopup() {
   openPopup(popupEditProfileEl);
@@ -42,7 +41,7 @@ function createCard(cardProperty) {
   return templateClone
 }
 
-initialCards.forEach(e => cardsEl.prepend(createCard(e)));
+initialCards.forEach(cardData => cardsEl.prepend(createCard(cardData)));
 
 btnEditProfileEl.addEventListener('click', openEditProfilePopup);
 btnAddCardEl.addEventListener('click', () => openPopup(popupAddCardEl));
@@ -57,17 +56,14 @@ formAddCardEl.addEventListener('submit', evt => {
   const link = evt.target.querySelector('input[name="link"]').value;
   const cardProperty = {name: name, link: link};
   const newCard = createCard(cardProperty);
-  const popupEl = evt.target.closest('.popup');
   cardsEl.prepend(newCard);
-  closePopup(popupEl);
-  evt.target.querySelector('input[name="name"]').value = '';
-  evt.target.querySelector('input[name="link"]').value = '';
+  closePopup(popupAddCardEl);
+  formAddCardEl.reset();
 })
 
 formEditProfileEl.addEventListener('submit', evt => {
   evt.preventDefault();
   profileNameEl.textContent = evt.target.querySelector('input[name="name"]').value;
   profileJobEl.textContent = evt.target.querySelector('input[name="job"]').value;
-  const popupEl = evt.target.closest('.popup');
-  closePopup(popupEl);
+  closePopup(popupEditProfileEl);
 })
