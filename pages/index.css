@@ -57,5 +57,8 @@
 
 /* FORM */
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__item/form__item.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__set/form__set.css);
 @import url(../blocks/form/__submit/form__submit.css);
+@import url(../blocks/form/__input/_type/form__input_type_error.css);
+@import url(../blocks/form/__input-error/form__input-error.css);

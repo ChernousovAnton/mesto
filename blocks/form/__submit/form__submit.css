@@ -17,6 +17,19 @@
   opacity: .8;
 }
 
+.form__submit_inactive {
+  opacity: .2;
+  background: #e5e5e5;
+  color: #000;
+  border: 1px solid #000000;
+  border-radius: 2px;
+}
+
+.form__submit_inactive:hover {
+  cursor: default;
+  opacity: .2;
+}
+
 @media screen and (max-width: 918px) {
   .form__submit {
     margin: 13px 22px 27px;

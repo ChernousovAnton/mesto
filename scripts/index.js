@@ -14,14 +14,47 @@ const btnClosePopupEls = document.querySelectorAll('.popup__close-btn');
 const formEditProfileEl = document.querySelector('form[name="edit-profile"]');
 const formAddCardEl = document.querySelector('form[name="add-card"]');
 const templateCard = document.querySelector('#card-template');
+const popupsEl = document.querySelectorAll('.popup');
+const keyPopupClose = 'Escape'
 
 const closePopup = (popup) => popup.classList.remove('popup_opened');
-const openPopup = (popup) => popup.classList.add('popup_opened');
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+  popup.querySelectorAll('.form__input-error').forEach(error => error.textContent = '');
+};
+
+popupsEl.forEach(popup => {
+  popup.addEventListener('mousedown', evt => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(evt.target);
+    }
+  })
+})
+
+document.addEventListener('keydown', function (evt) {
+  if (evt.key === keyPopupClose) {
+    popupsEl.forEach(popup => closePopup(popup));
+  }
+})
+
+enableValidation({
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'form__submit_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+});
 
 function openEditProfilePopup() {
   openPopup(popupEditProfileEl);
   namePopupEditProfileEl.value = profileNameEl.textContent;
   jobPopupEditProfileEl.value = profileJobEl.textContent;
+}
+
+function openAddCardPopup() {
+  openPopup(popupAddCardEl);
+  formAddCardEl.reset();
 }
 
 function createCard(cardProperty) {
@@ -38,13 +71,13 @@ function createCard(cardProperty) {
     popupCardImageEl.alt = cardProperty.name;
     openPopup(popupCardEl);
   });
-  return templateClone
+  return templateClone;
 }
 
 initialCards.forEach(cardData => cardsEl.prepend(createCard(cardData)));
 
 btnEditProfileEl.addEventListener('click', openEditProfilePopup);
-btnAddCardEl.addEventListener('click', () => openPopup(popupAddCardEl));
+btnAddCardEl.addEventListener('click', openAddCardPopup);
 btnClosePopupEls.forEach(closePopupBtn => closePopupBtn.addEventListener('click', evt => {
   const popupEl = evt.target.closest('.popup');
   closePopup(popupEl);
