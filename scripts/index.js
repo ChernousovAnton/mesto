@@ -13,29 +13,41 @@ const popupCardImageEl = popupCardEl.querySelector('.popup__card-image');
 const btnClosePopupEls = document.querySelectorAll('.popup__close-btn');
 const formEditProfileEl = document.querySelector('form[name="edit-profile"]');
 const formAddCardEl = document.querySelector('form[name="add-card"]');
+const formAddCardSubmitEl = formAddCardEl.querySelector('.form__submit')
 const templateCard = document.querySelector('#card-template');
 const popupsEl = document.querySelectorAll('.popup');
 const keyPopupClose = 'Escape'
 
-const closePopup = (popup) => popup.classList.remove('popup_opened');
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
+}
+
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
-  popup.querySelectorAll('.form__input-error').forEach(error => error.textContent = '');
-};
+  document.addEventListener('keydown', closeByEsc);
+}
 
-popupsEl.forEach(popup => {
-  popup.addEventListener('mousedown', evt => {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(evt.target);
-    }
-  })
-})
+function closeByEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 
 document.addEventListener('keydown', function (evt) {
   if (evt.key === keyPopupClose) {
     popupsEl.forEach(popup => closePopup(popup));
   }
 })
+
+function removeInputTextContent(form) {
+  form.querySelectorAll('.form__input-error').forEach(error => error.textContent = '');
+}
+
+function removeInputErrorStyle(form) {
+  form.querySelectorAll('.form__input').forEach(input => input.classList.remove('form__input_type_error'));
+}
 
 enableValidation({
   formSelector: '.form',
@@ -50,11 +62,16 @@ function openEditProfilePopup() {
   openPopup(popupEditProfileEl);
   namePopupEditProfileEl.value = profileNameEl.textContent;
   jobPopupEditProfileEl.value = profileJobEl.textContent;
+  removeInputTextContent(formEditProfileEl);
+  removeInputErrorStyle(formEditProfileEl);
 }
 
 function openAddCardPopup() {
   openPopup(popupAddCardEl);
   formAddCardEl.reset();
+  formAddCardSubmitEl.classList.add('form__submit_inactive');
+  removeInputTextContent(formAddCardEl);
+  removeInputErrorStyle(formAddCardEl);
 }
 
 function createCard(cardProperty) {
