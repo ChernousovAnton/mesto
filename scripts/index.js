@@ -12,11 +12,11 @@ const popupCardFigcaptionEl = popupCardEl.querySelector('.popup__figcaption');
 const popupCardImageEl = popupCardEl.querySelector('.popup__card-image');
 const btnClosePopupEls = document.querySelectorAll('.popup__close-btn');
 const formEditProfileEl = document.querySelector('form[name="edit-profile"]');
+const formEditProfileSubmitEl = formEditProfileEl.querySelector('.form__submit');
 const formAddCardEl = document.querySelector('form[name="add-card"]');
 const formAddCardSubmitEl = formAddCardEl.querySelector('.form__submit')
 const templateCard = document.querySelector('#card-template');
 const popupsEl = document.querySelectorAll('.popup');
-const keyPopupClose = 'Escape'
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
@@ -35,19 +35,13 @@ function closeByEsc(evt) {
   }
 }
 
-document.addEventListener('keydown', function (evt) {
-  if (evt.key === keyPopupClose) {
-    popupsEl.forEach(popup => closePopup(popup));
-  }
+popupsEl.forEach(popup => {
+  popup.addEventListener('mousedown', evt => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(evt.target);
+    }
+  })
 })
-
-function removeInputTextContent(form) {
-  form.querySelectorAll('.form__input-error').forEach(error => error.textContent = '');
-}
-
-function removeInputErrorStyle(form) {
-  form.querySelectorAll('.form__input').forEach(input => input.classList.remove('form__input_type_error'));
-}
 
 enableValidation({
   formSelector: '.form',
@@ -62,16 +56,17 @@ function openEditProfilePopup() {
   openPopup(popupEditProfileEl);
   namePopupEditProfileEl.value = profileNameEl.textContent;
   jobPopupEditProfileEl.value = profileJobEl.textContent;
-  removeInputTextContent(formEditProfileEl);
-  removeInputErrorStyle(formEditProfileEl);
+  formEditProfileSubmitEl.classList.remove('form__submit_inactive');
+  formEditProfileSubmitEl.disabled = false;
+  formEditProfileEl.querySelectorAll('.form__input-error').forEach(error => error.textContent = '');
 }
 
 function openAddCardPopup() {
   openPopup(popupAddCardEl);
   formAddCardEl.reset();
   formAddCardSubmitEl.classList.add('form__submit_inactive');
-  removeInputTextContent(formAddCardEl);
-  removeInputErrorStyle(formAddCardEl);
+  formAddCardSubmitEl.disabled = true;
+  formAddCardEl.querySelectorAll('.form__input-error').forEach(error => error.textContent = '');
 }
 
 function createCard(cardProperty) {
