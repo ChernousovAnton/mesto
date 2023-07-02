@@ -18,9 +18,7 @@ const popupCardFigcaptionEl = popupCardEl.querySelector('.popup__figcaption');
 const popupCardImageEl = popupCardEl.querySelector('.popup__card-image');
 
 const formEditProfileEl = document.querySelector('form[name="edit-profile"]');
-const formEditProfileSubmitEl = formEditProfileEl.querySelector('.form__submit');
 const formAddCardEl = document.querySelector('form[name="add-card"]');
-const formAddCardSubmitEl = formAddCardEl.querySelector('.form__submit')
 const templateCardSelector = '#card-template';
 const popupsEl = document.querySelectorAll('.popup');
 
