@@ -9,7 +9,7 @@ export default class FormValidator {
   }
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._formEl.querySelector(`.${inputElement.name}-error`);
-    inputElement.classList.add(this._inputErrorClass );
+    inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
   };
@@ -42,6 +42,14 @@ export default class FormValidator {
   enableValidation() {
     this._setEventListeners();
   };
+
+  clearInputsError() {
+    this._inputList.forEach((inputElement) => {
+      const errorElement = this._formEl.querySelector(`.${inputElement.name}-error`);
+      errorElement.textContent = '';
+      inputElement.classList.remove(this._inputErrorClass);
+    })
+  }
 
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {

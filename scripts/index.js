@@ -12,6 +12,11 @@ const namePopupEditProfileEl = popupEditProfileEl.querySelector('input[name="nam
 const jobPopupEditProfileEl = popupEditProfileEl.querySelector('input[name="job"]');
 const popupAddCardEl = document.querySelector('#add-card-popup');
 const btnClosePopupEls = document.querySelectorAll('.popup__close-btn');
+
+const popupCardEl = document.querySelector('#card-popup');
+const popupCardFigcaptionEl = popupCardEl.querySelector('.popup__figcaption');
+const popupCardImageEl = popupCardEl.querySelector('.popup__card-image');
+
 const formEditProfileEl = document.querySelector('form[name="edit-profile"]');
 const formEditProfileSubmitEl = formEditProfileEl.querySelector('.form__submit');
 const formAddCardEl = document.querySelector('form[name="add-card"]');
@@ -44,6 +49,13 @@ popupsEl.forEach(popup => {
   })
 })
 
+function handleCardClick(name, link) {
+  popupCardFigcaptionEl.textContent = name;
+  popupCardImageEl.src = link;
+  popupCardImageEl.alt = name;
+  openPopup(popupCardEl);
+}
+
 const formProp = {
   inputSelector: '.form__input',
   submitButtonSelector: '.form__submit',
@@ -61,22 +73,23 @@ function openEditProfilePopup() {
   openPopup(popupEditProfileEl);
   namePopupEditProfileEl.value = profileNameEl.textContent;
   jobPopupEditProfileEl.value = profileJobEl.textContent;
-  formEditProfileSubmitEl.classList.remove('form__submit_inactive');
-  formEditProfileSubmitEl.disabled = false;
-  formEditProfileEl.querySelectorAll('.form__input-error').forEach(error => error.textContent = '');
+  editProfileFormValidator.clearInputsError();
 }
 
 function openAddCardPopup() {
   openPopup(popupAddCardEl);
   formAddCardEl.reset();
-  formAddCardSubmitEl.classList.add('form__submit_inactive');
-  formAddCardSubmitEl.disabled = true;
-  formAddCardEl.querySelectorAll('.form__input-error').forEach(error => error.textContent = '');
+  addCardFormValidator.clearInputsError();
+}
+
+function createCard(cardData) {
+  const newCard = new Card(cardData, templateCardSelector, handleCardClick);
+  const newCardEl = newCard.generateCard();
+  return newCardEl;
 }
 
 initialCards.forEach(cardData => {
-  const newCard = new Card(cardData, templateCardSelector);
-  const newCardEl = newCard.generateCard();
+  const newCardEl = createCard(cardData);
   cardsEl.prepend(newCardEl);
 });
 
@@ -92,8 +105,7 @@ formAddCardEl.addEventListener('submit', evt => {
   const name = evt.target.querySelector('input[name="name"]').value;
   const link = evt.target.querySelector('input[name="link"]').value;
   const cardData = {name: name, link: link};
-  const newCard = new Card(cardData, templateCardSelector);
-  const newCardEl = newCard.generateCard();
+  const newCardEl = createCard(cardData);
   cardsEl.prepend(newCardEl);
   closePopup(popupAddCardEl);
   formAddCardEl.reset();
