@@ -43,7 +43,13 @@ export default class FormValidator {
     this._setEventListeners();
   };
 
-  clearInputsError() {
+  validateOpenedForm() {
+    this._clearInputsError();
+    this._toggleButtonState();
+
+  }
+
+  _clearInputsError() {
     this._inputList.forEach((inputElement) => {
       const errorElement = this._formEl.querySelector(`.${inputElement.name}-error`);
       errorElement.textContent = '';

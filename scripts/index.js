@@ -71,13 +71,13 @@ function openEditProfilePopup() {
   openPopup(popupEditProfileEl);
   namePopupEditProfileEl.value = profileNameEl.textContent;
   jobPopupEditProfileEl.value = profileJobEl.textContent;
-  editProfileFormValidator.clearInputsError();
+  editProfileFormValidator.validateOpenedForm();
 }
 
 function openAddCardPopup() {
   openPopup(popupAddCardEl);
   formAddCardEl.reset();
-  addCardFormValidator.clearInputsError();
+  addCardFormValidator.validateOpenedForm();
 }
 
 function createCard(cardData) {
