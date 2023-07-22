@@ -19,7 +19,7 @@ const formAddCardEl = document.querySelector(selectors.formAddCard);
 
 const popupCard = new PopupWithImage(selectors.popupCard);
 popupCard.setEventListeners();
-const popupAddCard = new PopupWithForm(selectors.popupAddCard, submitCardFormHandler);
+const popupAddCard = new PopupWithForm(selectors.popupAddCard, renderCard);
 popupAddCard.setEventListeners();
 const popupEditProfile = new PopupWithForm(selectors.editProfilePopup, submitEditProfileFormHandler);
 popupEditProfile.setEventListeners();
@@ -49,29 +49,15 @@ function openAddCardPopup() {
   addCardFormValidator.validateOpenedForm();
 }
 
-function renderer(item) {
+function renderCard(item) {
   const card = new Card(item, selectors.templateCard, handleCardClick);
   const cardElement = card.generateCard();
   cardsList.addItem(cardElement);
 }
 
-function submitCardFormHandler(evt) {
-  evt.preventDefault();
-  const name = evt.target.querySelector(selectors.inputName).value;
-  const link = evt.target.querySelector(selectors.inputLink).value;
-  const cardData = [{name: name, link: link}];
-  const cardsList = new Section({items: cardData, renderer: renderer}, selectors.cardContainer);
-  cardsList.renderItems();
-  formAddCardEl.reset();
+function submitEditProfileFormHandler(data) {
+  userInfo.setUserInfo(data);
 }
 
-function submitEditProfileFormHandler(evt) {
-  evt.preventDefault();
-  const name = evt.target.querySelector(selectors.inputName).value;
-  const job = evt.target.querySelector(selectors.inputJob).value;
-  userInfo.setUserInfo(name, job);
-  popupEditProfile.close();
-}
-
-const cardsList = new Section({items: initialCards, renderer: renderer}, selectors.cardContainer);
+const cardsList = new Section({items: initialCards, renderer: renderCard}, selectors.cardContainer);
 cardsList.renderItems();

@@ -8,8 +8,8 @@ export default class UserInfo {
     return {name: this._nameEl.textContent, job: this._jobEl.textContent}
   }
 
-  setUserInfo(name, job) {
-    this._nameEl.textContent = name;
-    this._jobEl.textContent = job;
+  setUserInfo(data) {
+    this._nameEl.textContent = data.name;
+    this._jobEl.textContent = data.job;
   }
 }
