@@ -1,0 +1,7 @@
+.profile__image {
+  height: inherit;
+  width: inherit;
+  border-radius: inherit;
+  object-position: center;
+  object-fit: cover;
+}

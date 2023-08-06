@@ -7,18 +7,21 @@
 </head>
 <body>
   <div class="page">
+
     <header class="header">
       <div class="header__logo"></div>
     </header>
+
     <main class="main">
       <section class="profile">
         <div class="profile__card">
-          <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="фотография Жак-Ив Кусто">
-
+          <button class="profile__avatar">
+            <img class="profile__image" src="" alt="">
+          </button>
           <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit-btn" type="button"></button>
-            <p class="profile__job">Исследователь океана</p>
+            <p class="profile__about"></p>
           </div>
         </div>
         <button class="profile__add-btn" type="button"></button>
@@ -28,9 +31,11 @@
         </ul>
       </section>
     </main>
+
     <footer class="footer">
       <p class="footer__label">&#169; 2020 Mesto Russia</p>
     </footer>
+
     <div class="popup popup_type_form" id="edit-profile-popup">
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
@@ -40,14 +45,15 @@
             <span class="form__input-error name-error"></span>
           </fieldset>
           <fieldset class="form__set">
-            <input class="form__input" type="text" name="job" value="Исследователь океана" placeholder="Профессия" minlength="2" maxlength="200" required>
-            <span class="form__input-error job-error"></span>
+            <input class="form__input" type="text" name="about" value="Исследователь океана" placeholder="Профессия" minlength="2" maxlength="200" required>
+            <span class="form__input-error about-error"></span>
           </fieldset>
           <button class="form__submit" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-btn" type="button"></button>
       </div>
     </div>
+
     <div class="popup popup_type_form" id="add-card-popup">
       <div class="popup__container">
         <h3 class="popup__title">Новое место</h3>
@@ -65,6 +71,21 @@
         <button class="popup__close-btn" type="button"></button>
       </div>
     </div>
+
+    <div class="popup popup_type_form" id="edit-avatar-popup">
+      <div class="popup__container">
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form class="form" name="edit-avatar-form" novalidate>
+          <fieldset class="form__set">
+            <input class="form__input" type="url" name="link" placeholder="Ссылка на картинку" required>
+            <span class="form__input-error link-error"></span>
+          </fieldset>
+          <button class="form__submit" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-btn" type="button"></button>
+      </div>
+    </div>
+
     <div class="popup popup_type_card" id="card-popup">
       <div class="popup__card-container">
         <img class="popup__card-image" src="#" alt="#">
@@ -72,16 +93,31 @@
         <button class="popup__close-btn" type="button"></button>
       </div>
     </div>
+
+    <div class="popup popup_type_form" id="confirmation-popup">
+      <div class="popup__container">
+        <h3 class="popup__title popup__title_type_confirmation">Вы уверены?</h3>
+        <form class="form" name="confirmation-form" novalidate>
+          <button class="form__submit" type="submit">Да</button>
+        </form>
+        <button class="popup__close-btn" type="button"></button>
+      </div>
+    </div>
   </div>
+
   <template id="card-template">
     <li class="card">
       <img class="card__image">
       <div class="card__info">
         <h2 class="card__title"></h2>
-        <button class="card__like" type="button"></button>
+        <div class="card__like-container">
+          <button class="card__like" type="button"></button>
+          <p class="card__like-count"></p>
+        </div>
       </div>
       <button class="card__trash"></button>
     </li>
   </template>
+
 </body>
 </html>

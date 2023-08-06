@@ -1,7 +1,29 @@
 .profile__avatar {
+  position: relative;
+  border: none;
   height: 120px;
   width: 120px;
-  object-position: center;
-  object-fit: cover;
-  border-radius: 120px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+}
+
+.profile__avatar::before {
+  background: transparent url(../../../images/edit-button.svg) no-repeat center;
+  background-size: 26px 26px;
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: all .3s linear;
+}
+
+.profile__avatar:hover::before {
+  background-color: rgba(0, 0, 0, .8);
+  opacity: 1;
+  cursor: pointer;
 }
