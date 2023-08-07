@@ -21,9 +21,7 @@ export const selectors = {
   profileAbout: '.profile__about',
   profileAvatar: '.profile__avatar',
   profileImage: '.profile__image'
-}
-
-export const myId = 'c08e25d2708d534de7353734';
+};
 
 export const formProp = {
   inputSelector: '.form__input',
@@ -40,5 +38,6 @@ export const apiOptions = {
   headers: {
     authorization: 'a7df98f9-87e5-4907-acfc-113e20edd625',
     'Content-Type': 'application/json'
-  }
+  },
+  methodsBodyRequired: ['POST', 'PATCH', 'PUT']
 };
