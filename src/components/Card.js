@@ -68,5 +68,4 @@ export default class Card {
   getCardId() {
     return this._cardId;
   }
-
 }

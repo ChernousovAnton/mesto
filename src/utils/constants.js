@@ -1,6 +1,5 @@
 export const selectors = {
   cardContainer: '.main .elements',
-
   btnEditProfile: '.profile__edit-btn',
   btnAddCard: '.profile__add-btn',
   formEditProfile: 'form[name="edit-profile-form"]',

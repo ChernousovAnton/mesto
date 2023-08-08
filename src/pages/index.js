@@ -11,7 +11,6 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js"
 
 let myId;
-let cardsList;
 
 const btnEditProfileEl = document.querySelector(selectors.btnEditProfile);
 const btnAddCardEl = document.querySelector(selectors.btnAddCard);
@@ -86,16 +85,20 @@ function openAddCardPopup() {
 }
 
 function renderCard(cardData) {
+  cardsList.addItems(createCardElement(cardData));
+}
+
+function createCardElement(cardData) {
   const card = new Card(cardData, selectors.templateCard, handleCardClick, handleTrashClick, handleLikeClick, myId);
   const cardElement = card.generateCard();
-  cardsList.addItem(cardElement);
+  return cardElement;
 }
 
 function submitAddCardFormHandler(item) {
   const initialSubmitBtnText = formAddCardSubmitBtnEl.textContent;
   formAddCardSubmitBtnEl.textContent = textSaving;
   api.createCard(item)
-    .then((cardData) => renderCard(cardData))
+    .then((cardData) => cardsList.addItem(createCardElement(cardData)))
     .catch(err => console.error(err))
     .finally(() => formAddCardSubmitBtnEl.textContent = initialSubmitBtnText);
 }
@@ -132,7 +135,7 @@ const userInfo = new UserInfo({
   avatarSelector: selectors.profileImage
 });
 
-cardsList = new Section({renderer: renderCard}, selectors.cardContainer);
+const cardsList = new Section({renderer: renderCard}, selectors.cardContainer);
 
 Promise.all([
   api.getUserInfo(),
@@ -141,10 +144,8 @@ Promise.all([
 .then(([userData, initialCards]) => {
   userInfo.setUserInfo(userData);
   myId = userData._id;
-  cardsList.renderItems(initialCards.reverse());
+  cardsList.renderItems(initialCards);
+  // console.log(initialCards.map(card => createCardElement(card)))
+  // cardsList.addItems(initialCards.map(card => createCardElement(card)))
 })
 .catch(err => {console.error(err)})
-
-
-
-
