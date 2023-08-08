@@ -84,7 +84,7 @@ function openAddCardPopup() {
   cardAddFormValidator.validateOpenedForm();
 }
 
-function renderCard(cardData) {
+function renderCards(cardData) {
   cardsList.addItems(createCardElement(cardData));
 }
 
@@ -135,7 +135,7 @@ const userInfo = new UserInfo({
   avatarSelector: selectors.profileImage
 });
 
-const cardsList = new Section({renderer: renderCard}, selectors.cardContainer);
+const cardsList = new Section({renderer: renderCards}, selectors.cardContainer);
 
 Promise.all([
   api.getUserInfo(),
@@ -145,7 +145,5 @@ Promise.all([
   userInfo.setUserInfo(userData);
   myId = userData._id;
   cardsList.renderItems(initialCards);
-  // console.log(initialCards.map(card => createCardElement(card)))
-  // cardsList.addItems(initialCards.map(card => createCardElement(card)))
 })
 .catch(err => {console.error(err)})
